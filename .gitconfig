@@ -1,0 +1,12 @@
+[user]
+	email = JulianLindblad@gmail.com
+	name = Julian Lindblad
+[color]
+	ui = true
+[core]
+	quotepath = false
+	editor = /usr/local/bin/mvim
+[alias]
+	lol = log --oneline --decorate --graph
+	st = status -s
+	co = checkout

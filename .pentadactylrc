@@ -1,0 +1,29 @@
+"hg6774
+
+loadplugins '\.(js|penta)$'
+group! -locations=www.google.com google
+group user
+map -count -group=google -modes=n,v j <count><C-v><Down>
+map -count -group=google -modes=n,v k <count><C-v><Up>
+map -count -modes=n,v <A-[><A-[> <count>[[
+map -count -modes=n,v <A-]><A-]> <count>]]
+map -count -modes=n,v <C-S-I> <count>:forward!<Return>
+map -count -modes=n,v <C-S-O> <count>:back!<Return>
+map -modes=n,v <F2> -ex :set showtabline!=always,never
+map -count -modes=n,v <PageDown> <count><C-d>
+map -count -modes=n,v <PageUp> <count><C-u>
+map -count -modes=n,v B <count>:bg<Space>tabopen<Space>
+map -count -modes=n,v g<A-$> <count>g$
+map -count -modes=n,v h <count>:help<Space>
+map -count -modes=n,v j -builtin <count><Down><Down><Down>
+map -count -modes=n,v k -builtin <count><Up><Up><Up>
+map -count -modes=n,v M <count>50%
+map -count -modes=n,v gr <count>gT
+map -count -modes=i <M-a> <count><C-v><M-a>
+set activate=addons,bookmarks,diverted,downloads,extoptions,help,homepage,quickmark,paste,tabopen
+set guioptions=brnCs
+set nextpattern='\bnext\b','\bnästa\b',^>$,'^(>>|»)$','^(>|»)','(>|»)$','\bmore\b'
+set passkeys=www.reddit.com:jkxazl<S-l>c<S-c><Enter><S-enter>,www.google.com/reader:kj<Enter>ofrv,mail.google.com:jk<Enter>,gi
+set previouspattern='\bprev|previous\b','\bföregående\b',^<$,'^(<<|«)$','^(<|«)','(<|«)$'
+
+" vim: set ft=pentadactyl:
