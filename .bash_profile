@@ -1,3 +1,18 @@
+
+# ARCH:
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+# END ARCH TODO: Check os!
+
+
+
 eval "`gdircolors`"
 alias ls='gls -h --color'
 alias ll='ls -lah'
