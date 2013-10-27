@@ -37,7 +37,11 @@ set background=dark " Use theme made for dark terminals
 let g:zenburn_high_Contrast = 1 " use higher contrast
 let g:zenburn_old_Visual = 1
 colorscheme zenburn " set to zenburn low-contrast color schema
-set clipboard=unnamed " share with system clipboard on os x
+if(has('x11'))
+  set clipboard=unnamedplus  
+else
+  set clipboard=unnamed " share with system clipboard on os x
+endif
 set foldmethod=syntax
 set splitbelow " Put new windows below active
 set splitright " Put new windows right of active

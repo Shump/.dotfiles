@@ -11,7 +11,9 @@ if [[ `uname` == 'Linux' ]]; then
 	alias ls='ls --color=auto'
 	PS1='[\u@\h \W]\$ '
 
-	# END ARCH TODO: Check os!
+  alias reboot='sudo reboot'
+  alias powerdown='sudo shutdown -h 0'
+  alias grep='grep --color=auto'
 fi
 
 
@@ -44,9 +46,10 @@ function realpath
   echo $dirname
 }
 
-function de
+#screenshot - takes a screenshot of your current window
+screenshot ()
 {
-	mv $1 ~/.Trash
+    import -frame -strip -quality 85 "$HOME/screenshots/screen_$(date +%Y%m%d_%H%M%S).png"
 }
 
 if [[ `uname` == 'Darwin' ]]; then
