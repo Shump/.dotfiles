@@ -1,24 +1,28 @@
 
-# ARCH:
-# ~/.bashrc
-#
+if [[ `uname` == 'Linux' ]]; then
+	# ARCH:
+	# ~/.bashrc
+	#
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+	# If not running interactively, don't do anything
+	[[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+	eval "`dircolors`"
+	alias ls='ls --color=auto'
+	PS1='[\u@\h \W]\$ '
 
-# END ARCH TODO: Check os!
+	# END ARCH TODO: Check os!
+fi
 
 
-
-eval "`gdircolors`"
-alias ls='gls -h --color'
+if [[ `uname` == 'Darwin' ]]; then
+	eval "`gdircolors`"
+	alias ls='gls -h --color'
+	alias vim='mvim -v'
+	alias gvim='mvim'
+fi
 alias ll='ls -lah'
 alias la='ls -ah'
-alias vim='mvim -v'
-alias gvim='mvim'
 
 
 function mk
@@ -40,16 +44,18 @@ function realpath
   echo $dirname
 }
 
-# homebrew bash completion
-source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
-
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-. $(brew --prefix)/etc/bash_completion
-fi
-
 function de
 {
 	mv $1 ~/.Trash
 }
+
+if [[ `uname` == 'Darwin' ]]; then
+	# homebrew bash completion
+	source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+
+	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+	if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew --prefix)/etc/bash_completion
+	fi
+fi

@@ -14,6 +14,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'jnurmine/Zenburn'
 Bundle 'scrooloose/syntastic'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'dag/vim2hs'
 
 
 " Use filetype specific detection, indentation and plugins
@@ -43,7 +44,7 @@ set splitright " Put new windows right of active
 
 set encoding=utf-8
 set undofile " save undo tree when quitting
-set undodir=/Users/julian/.vimundo/ " Save undo file in specific folder
+set undodir=~/.vimundo/ " Save undo file in specific folder
 
 " Fast terminal for fast drawing.
 set ttyfast
