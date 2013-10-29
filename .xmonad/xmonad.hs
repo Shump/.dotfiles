@@ -1,5 +1,18 @@
 import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.InsertPosition
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Spiral
+import XMonad.Layout.Tabbed
+import XMonad.Layout.Dishes
+import XMonad.Layout.StackTile
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.ThreeColumns
+import qualified Data.Map as M
 
 myTerminal = "urxvt"
 myWorkspaces = ["1:main", "2:web", "3:chat", "4:media", "5:browse", "6:dev", "7:mail"]
@@ -30,6 +43,11 @@ main = do
                            , normalBorderColor = myNormalBorderColor  
                            , focusedBorderColor = myFocusedBorderColor
                            , layoutHook = myLayout
+                           , keys = keys' <+> keys defaultConfig
                            }
 
-
+keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList
+     [
+      ((modMask, xK_s),
+        spawn "$HOME/.scripts/switch_keyboard.sh")
+     ]

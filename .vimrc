@@ -15,7 +15,9 @@ Bundle 'jnurmine/Zenburn'
 Bundle 'scrooloose/syntastic'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'dag/vim2hs'
-
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Bundle 'godlygeek/tabular'
 
 " Use filetype specific detection, indentation and plugins
 filetype plugin indent on
