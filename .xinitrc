@@ -11,4 +11,6 @@ xmodmap ~/.xmodmap
 # To make urxvt use .Xresources
 xrdb -merge ~/.Xresources
 
+udiskie &
+
 exec xmonad
