@@ -14,40 +14,54 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.ThreeColumns
 import qualified Data.Map as M
 
+main = xmonad =<< statusBar myBarCommand myPrettyPrint myXmobarKey myConfig
+
+--------------------- xmobar stuff ----------------------
+myBarCommand = "xmobar"
+
+myPrettyPrint = xmobarPP
+    { ppTitle   = xmobarColor "#00FF00" "" . shorten 100
+    , ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" 
+    }
+
+myXmobarKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+--------------------- xmobar stuff ----------------------
+
+myConfig = defaultConfig 
+    { terminal           = myTerminal
+    , workspaces         = myWorkspaces
+    , modMask            = myModMask
+    , borderWidth        = myBorderWidth
+    , normalBorderColor  = myNormalBorderColor
+    , focusedBorderColor = myFocusedBorderColor
+    , layoutHook         = myLayoutHook
+    , keys               = myKeys <+> keys defaultConfig
+    }
+
 myTerminal = "urxvt"
-myWorkspaces = ["1:main", "2:web", "3:chat", "4:media", "5:browse", "6:dev", "7:mail"]
+myWorkspaces = ["1:web", "2:dev", "3:media", "4:torrents", "5", "6", "7", "8", "9", "0"]
 myModMask = mod4Mask
 myBorderWidth = 2
 myNormalBorderColor = "#505050"
 myFocusedBorderColor = "#d7d7d7"
 
-myLayout = tiled ||| Mirror tiled ||| Full
-        where
-             -- defualt tiling algorithm partitions the screen into two panes
-             tiled = spacing 2 $ Tall nmaster delta ratio
+myLayout = avoidStruts $
+    ResizableTall 1 (3/100) (1/2) [] |||
+    Mirror (ResizableTall 1 (3/100) (1/2) []) |||
+    Full
 
-             -- The default number of windows in the master pane
-             nmaster = 1
+myLayoutHook = smartBorders $ myLayout
 
-             -- Default proportion of screen occupied by master pane
-             ratio = 2/3
-
-             -- Percent fo screen to increment by when resizing panes
-             delta = 5/100
-
-main = do
-    xmonad $ defaultConfig { terminal = myTerminal
-                           , workspaces = myWorkspaces
-                           , modMask = myModMask
-                           , borderWidth = myBorderWidth
-                           , normalBorderColor = myNormalBorderColor  
-                           , focusedBorderColor = myFocusedBorderColor
-                           , layoutHook = myLayout
-                           , keys = keys' <+> keys defaultConfig
-                           }
-
-keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList
+myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList
      [
-      ((modMask, xK_s),
+       ((modMask, xK_s),
         spawn "$HOME/.scripts/switch_keyboard.sh")
+
+     , ((modMask, xK_a), 
+       sendMessage MirrorShrink)
+ 
+     , ((modMask, xK_z), 
+       sendMessage MirrorExpand)
+
      ]
+
