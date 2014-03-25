@@ -1,9 +1,30 @@
-eval "`gdircolors`"
-alias ls='gls -h --color'
+
+if [[ `uname` == 'Linux' ]]; then
+	# ARCH:
+	# ~/.bashrc
+	#
+
+	# If not running interactively, don't do anything
+	[[ $- != *i* ]] && return
+
+	eval "`dircolors`"
+	alias ls='ls --color=auto'
+	PS1='[\u@\h \W]\$ '
+
+  alias reboot='sudo reboot'
+  alias powerdown='sudo shutdown -h 0'
+  alias grep='grep --color=auto'
+fi
+
+
+if [[ `uname` == 'Darwin' ]]; then
+	eval "`gdircolors`"
+	alias ls='gls -h --color'
+	alias vim='mvim -v'
+	alias gvim='mvim'
+fi
 alias ll='ls -lah'
 alias la='ls -ah'
-alias vim='mvim -v'
-alias gvim='mvim'
 
 
 function mk
@@ -25,13 +46,21 @@ function realpath
   echo $dirname
 }
 
-# homebrew bash completion
-source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+#screenshot - takes a screenshot of your current window
+screenshot ()
+{
+    import -frame -strip -quality 85 "$HOME/screenshots/screen_$(date +%Y%m%d_%H%M%S).png"
+}
 
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+if [[ `uname` == 'Darwin' ]]; then
+	# homebrew bash completion
+	source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-. $(brew --prefix)/etc/bash_completion
+	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+	if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew --prefix)/etc/bash_completion
+	fi
 fi
 
 function de
