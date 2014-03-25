@@ -38,3 +38,6 @@ function de
 {
 	mv $1 ~/.Trash
 }
+
+export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH=/Users/julian/Documents/skola/proglang/bin:$PATH
