@@ -70,3 +70,8 @@ function de
 
 export PATH=$HOME/Library/Haskell/bin:$PATH
 export PATH=/Users/julian/Documents/skola/proglang/bin:$PATH
+
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+
+setenv GL_ENABLE_DEBUG_ATTACH YES

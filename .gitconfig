@@ -5,8 +5,10 @@
 	ui = true
 [core]
 	quotepath = false
-	editor = /usr/local/bin/mvim
+	editor = /Applications/MacVim.app/Contents/MacOS/Vim
 [alias]
 	lol = log --oneline --decorate --graph
 	st = status -s
 	co = checkout
+[push]
+	default = simple
