@@ -138,6 +138,16 @@ vnoremap 0 g0
 nnoremap ^ g^
 vnoremap ^ g^
 
+nnoremap gj j
+vnoremap gj j
+nnoremap gk k
+vnoremap gk k
+nnoremap g$ $
+vnoremap g$ $
+nnoremap g0 0
+vnoremap g0 0
+nnoremap g^ ^
+vnoremap g^ ^
 
 " Change cursor icon depending on insert mode or not
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
