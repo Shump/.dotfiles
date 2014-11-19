@@ -20,15 +20,25 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'dag/vim2hs'
 "Plugin 'scrooloose/nerdcommenter'
 Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
-Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'chrisbra/Recover.vim'
+Plugin 'salsifis/vim-transpose'
 
-Plugin 'file:///Users/julian/.vim/bundle/lldb'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/unite-outline'
+
+" Angular stuff
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'matthewsimo/angular-vim-snippets'
+Plugin 'burnettk/vim-angular'
+
+"Plugin 'file:///Users/julian/.vim/bundle/lldb'
 
 " Use filetype specific detection, indentation and plugins
 filetype plugin indent on
-
 
 " filetype-specific settings can be found in
 " ~/.vim/after/ftplugin/<filetype>.vim
@@ -59,6 +69,7 @@ else
   set clipboard=unnamed " share with system clipboard on os x
 endif
 set foldmethod=syntax
+set foldlevelstart=99 " don't close any fold when opening new file
 
 set splitbelow " Put new windows below active
 set splitright " Put new windows right of active
@@ -183,5 +194,21 @@ omap af :normal Vaf<CR>
 " YouCompleteMe
 let g:ycm_always_populate_location_list = 1
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 let g:lldbinit_path='build/.lldbinit'
+
+" Customized replacements for Surround.vim
+" check number with :echom char2nr('t')
+autocmd FileType tex let b:surround_116 = "\\TODO{\r}{\1 note: \1}"        "t
+autocmd FileType tex let b:surround_99 = "\\\1 tag: \1{\r}"     "c
+
+" SYNTASTIC
+let g:syntastic_javascript_checkers = ['jshint']
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" UNITE
+nnoremap <silent> <leader>b :<C-u>Unite -start-insert buffer<CR>
+nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=outline -start-insert outline<CR>
